@@ -1,0 +1,3 @@
+## migrate
+
+`php artisan migrate`
