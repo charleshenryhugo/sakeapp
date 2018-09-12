@@ -7,6 +7,7 @@
 `php artisan serve`
 
  GET the following urls:
+ (make sure you have enough data to your database)
 
 ```
 http://localhost:8000/api/omakase/2778888
