@@ -10,6 +10,7 @@ use App\Purchase;
 class Liquor_storeController extends Controller
 {
     #used fields(columns): purchases->liquor1_id~liquor4_id, do not use liquor5_id
+    #                      store->alls
     #assume user will enter 4 liquor_store_ids no matter what happens
     #demo: enter 4 liquor_store_ids(e.g, 1,3,5,7)
     public function search_by_item_ids(Request $request){
@@ -19,13 +20,15 @@ class Liquor_storeController extends Controller
         $liquor_store_ids = explode(',', $request->input('item_id'));
         //$liquor_store = Liquor_store::find($liquor_store_id);
         $liquor_store = Liquor_store::find($liquor_store_ids[0]); //ダミ
-        
         $purchase = Purchase::whereIn('liquor1_id', $liquor_store_ids)
                             ->whereIn('liquor2_id', $liquor_store_ids)
                             ->whereIn('liquor3_id', $liquor_store_ids)
                             ->whereIn('liquor4_id', $liquor_store_ids)->first(); //ダミ
                             //->whereIn('liquor5_id', $liquor_store_ids)
-
+        if ($purchase == null){
+            //empty response if item_id not matched
+            return array();
+        }
         $store = Store::find($liquor_store->store_id);
         $purchase_id = $purchase->id;
         $source = $store->name;
