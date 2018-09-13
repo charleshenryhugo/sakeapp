@@ -24,8 +24,9 @@ use App\Liquor_store;
 }); */
 
 // GET methods
-Route::get('omakase/{postcode}', 'SetController@search_by_postcode');
+Route::get('omakase', 'SetController@search_by_postcode');
 //http://localhost:8000/api/omakase/2778888
+//api/omakase?postcode=2778888
 
 Route::get('set_order/{set_name}', 'Set_storeController@search_by_set_name');
 //http://localhost:8000/api/set_order/goodSet
