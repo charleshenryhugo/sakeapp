@@ -10,6 +10,9 @@ use App\Store;
 class Set_storeController extends Controller
 {
     public function search_by_set_name(Request $request){
+        header("Access-Control-Allow-Origin: *");
+        header("Access-Control-Allow-Methods: PUT, GET, POST");
+        header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
         $set_name = $request->input('set_name');
         $set_store = Set_store::where('name', $set_name)->first();
         $purchase = Purchase::where('set_id', $set_store->set_id)->first();

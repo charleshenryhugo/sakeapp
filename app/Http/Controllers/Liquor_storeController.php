@@ -10,6 +10,9 @@ use App\Purchase;
 class Liquor_storeController extends Controller
 {
     public function search_by_item_id(Request $request){
+        header("Access-Control-Allow-Origin: *");
+        header("Access-Control-Allow-Methods: PUT, GET, POST");
+        header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
         $liquor_store_id = $request->input('item_id');
         $liquor_store = Liquor_store::find($liquor_store_id);
         $purchase = Purchase::where('liquor1_id', $liquor_store_id)
@@ -32,6 +35,9 @@ class Liquor_storeController extends Controller
     }
 
     public function union_search(Request $request){
+        header("Access-Control-Allow-Origin: *");
+        header("Access-Control-Allow-Methods: PUT, GET, POST");
+        header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
         $postcode = $request->input('postcode'); 
         $keyword = $request->input('keyword');
         $degree = $request->input('strength');

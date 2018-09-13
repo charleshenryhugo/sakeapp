@@ -10,6 +10,9 @@ class SetController extends Controller
 {
     public function search_by_postcode(Request $request)
     {
+        header("Access-Control-Allow-Origin: *");
+        header("Access-Control-Allow-Methods: PUT, GET, POST");
+        header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
         $postcode = $request->input('postcode');
         $sets = Set::where('postcode', $postcode)->get();
         $response = array();
