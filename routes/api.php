@@ -25,20 +25,16 @@ use App\Liquor_store;
 
 // GET methods
 Route::get('omakase', 'SetController@search_by_postcode');
-//http://localhost:8000/api/omakase/2778888
-//api/omakase?postcode=2778888
+// http://localhost:8000api/omakase?postcode=2778888
 
 Route::get('set_order', 'Set_storeController@search_by_set_name');
-//http://localhost:8000/api/set_order/goodSet
-//api/set_order?set_name=goodSet
+// http://localhost:8000api/set_order?set_name=goodSet
 
 Route::get('items', 'Liquor_storeController@union_search');
-//http://localhost:8000/api/items/3338888&おさけ&5
-///api/items?postcode=1580094&keyword=sawayaka,kankitsu&strength=low
+// http://localhost:8000/api/items?postcode=1580094&keyword=sawayaka,kankitsu&strength=low
 
-Route::get('purchase', 'Liquor_storeController@search_by_item_id');
-//http://localhost:8000/api/purchase/2
-///api/purchase?item_id=1,3,5,7
+Route::get('purchase', 'Liquor_storeController@search_by_item_ids');
+// http://localhost:8000/api/purchase?item_id=1,3,5,7
 
 
 // POST methods
