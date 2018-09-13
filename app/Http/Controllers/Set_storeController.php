@@ -9,6 +9,7 @@ use App\Store;
 
 class Set_storeController extends Controller
 {
+    #used fields(columns): Set_stores->name, Stores->(name, info, address, delivery_time)
     public function search_by_set_name(Request $request){
         header("Access-Control-Allow-Origin: *");
         header("Access-Control-Allow-Methods: PUT, GET, POST");

@@ -9,6 +9,9 @@ use App\Purchase;
 
 class Liquor_storeController extends Controller
 {
+    #used fields(columns): purchases->liquor1_id~liquor4_id, do not use liquor5_id
+    #assume user will enter 4 liquor_store_ids no matter what happens
+    #demo: enter 4 liquor_store_ids(e.g, 1,3,5,7)
     public function search_by_item_ids(Request $request){
         header("Access-Control-Allow-Origin: *");
         header("Access-Control-Allow-Methods: PUT, GET, POST");
@@ -35,6 +38,8 @@ class Liquor_storeController extends Controller
         return $response;
     }
 
+    //used fields(columns): stores->postcode, Liquor_store->degree,  Liquor_store->description
+    //requirements: 
     public function union_search(Request $request){
         header("Access-Control-Allow-Origin: *");
         header("Access-Control-Allow-Methods: PUT, GET, POST");

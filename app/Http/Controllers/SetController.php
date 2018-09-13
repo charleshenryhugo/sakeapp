@@ -8,6 +8,7 @@ use App\Liquor;
 
 class SetController extends Controller
 {
+    #used fields(columns): Sets->alls, liquor->alls
     public function search_by_postcode(Request $request)
     {
         header("Access-Control-Allow-Origin: *");
