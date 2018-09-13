@@ -54,7 +54,7 @@ class Liquor_storeController extends Controller
         }
       
         while($i < 5){
-            $liquor_stores[$i] = Liquor_store::find(rand($i, 19));
+            $liquor_stores[$i] = Liquor_store::find(rand($i+1, 19));
             $i += 1;
         }
 

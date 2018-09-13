@@ -27,7 +27,10 @@ use App\Liquor_store;
 Route::get('omakase', 'SetController@search_by_postcode');
 // http://localhost:8000/api/omakase?postcode=2778888
 
-Route::get('set_order', 'Set_storeController@search_by_set_name');
+Route::get('set_order', 'Set_storeController@search_by_set_id');
+// http://localhost:8000/api/set_order?set_id=1
+
+//Route::get('set_order', 'Set_storeController@search_by_set_name');
 // http://localhost:8000/api/set_order?set_name=goodSet
 
 Route::get('items', 'Liquor_storeController@union_search');

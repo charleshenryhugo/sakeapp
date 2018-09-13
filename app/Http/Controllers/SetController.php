@@ -19,6 +19,7 @@ class SetController extends Controller
         $response = array();
         $i = 0;
         foreach ($sets as $set){
+            $set_id = $set->id;
             $set_name = $set->name;
             $price = $set->set_price;
             $liquor1 = Liquor::find($set->liquor1_id);
@@ -29,7 +30,7 @@ class SetController extends Controller
             $items = [$liquor1,$liquor2,$liquor3,$liquor4,$liquor5];
             $thumbnail = $set->image_url;
             $description = $set->description;
-            $response[$i] = ['name'=>$set_name, 'price'=>$price, 'items'=>$items, 'thumbnail'=>$thumbnail, 'description'=>$description];
+            $response[$i] = ['id'=>$set_id, 'name'=>$set_name, 'price'=>$price, 'items'=>$items, 'thumbnail'=>$thumbnail, 'description'=>$description];
             $i += 1;
         }
         return array('sets'=>$response);
