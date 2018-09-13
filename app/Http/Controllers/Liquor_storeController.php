@@ -10,7 +10,7 @@ use App\Purchase;
 class Liquor_storeController extends Controller
 {
     public function search_by_item_id(Request $request){
-        $liquor_store_id = $request->item_id;
+        $liquor_store_id = $request->input('item_id');
         $liquor_store = Liquor_store::find($liquor_store_id);
         $purchase = Purchase::where('liquor1_id', $liquor_store_id)
                             ->orWhere('liquor2_id', $liquor_store_id)
@@ -32,9 +32,9 @@ class Liquor_storeController extends Controller
     }
 
     public function union_search(Request $request){
-        $postcode = $request->postcode; 
-        $keyword = $request->keyword;
-        $degree = $request->strength;
+        $postcode = $request->input('postcode'); 
+        $keyword = $request->input('keyword');
+        $degree = $request->input('strength');
         
         $post_x = $postcode[2];
         $post_y = $postcode[3];

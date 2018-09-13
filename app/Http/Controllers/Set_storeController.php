@@ -10,7 +10,7 @@ use App\Store;
 class Set_storeController extends Controller
 {
     public function search_by_set_name(Request $request){
-        $set_name = $request->set_name;
+        $set_name = $request->input('set_name');
         $set_store = Set_store::where('name', $set_name)->first();
         $purchase = Purchase::where('set_id', $set_store->set_id)->first();
         $store = Store::where('id', $set_store->store_id)->first();
