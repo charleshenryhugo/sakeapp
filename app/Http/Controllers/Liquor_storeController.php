@@ -13,7 +13,7 @@ class Liquor_storeController extends Controller
     #                      store->alls
     #assume user will enter 4 liquor_store_ids no matter what happens
     #demo: enter 4 liquor_store_ids(e.g, 1,3,5,7)
-    public function search_by_item_ids(Request $request){
+    public function search_by_item_ids_2(Request $request){
         header("Access-Control-Allow-Origin: *");
         header("Access-Control-Allow-Methods: PUT, GET, POST");
         header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
@@ -39,6 +39,45 @@ class Liquor_storeController extends Controller
         $response = array('purchase_id'=>$purchase_id, 'source'=>$source, 'source_info'=>$source_info, 'source_address'=>$source_address, 'arrival_time'=>$arrival_time);
     
         return $response;
+    }
+    
+    public function search_by_item_ids(Request $request){
+        header("Access-Control-Allow-Origin: *");
+        header("Access-Control-Allow-Methods: PUT, GET, POST");
+        header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
+        $liquor_store_ids = explode(',', $request->input('item_id'));
+        $liquor_stores = array();
+        $i = 0;
+        foreach($liquor_store_ids as $liquor_store_id){
+            $liquor_stores[$i] = Liquor_store::find($liquor_store_id);
+            $i += 1;
+        }
+      
+        while($i < 5){
+            $liquor_stores[$i] = Liquor_store::find(rand($i, 19));
+            $i += 1;
+        }
+
+        $stores = array();
+        $i = 0;
+        foreach($liquor_stores as $liquor_store){
+            $stores[$i] = Store::find($liquor_store->store_id);
+            $i += 1;
+        }
+        
+        $purchase_id = 'XOMHB';
+
+        $source = $stores[0]->name; 
+        $source_info = $stores[0]->info;
+        $source_address = $stores[0]->address;
+        $arrival_time = date('m/d/Y H:i:s', ($stores[0]->delivery_time * 60));
+        
+        return array('purchase_id'=>$purchase_id, 
+                    'source'=>$source, 
+                    'source_info'=>$source_info, 
+                    'source_address'=>$source_address,
+                    'arrival_time'=>$arrival_time,
+                    'items'=>$liquor_stores);
     }
 
     //used fields(columns): stores->postcode, Liquor_store->degree,  Liquor_store->description

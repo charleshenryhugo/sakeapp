@@ -16,7 +16,10 @@ class Set_storeController extends Controller
         header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
         $set_name = $request->input('set_name');
         $set_store = Set_store::where('name', $set_name)->first();
-        $purchase = Purchase::where('set_id', $set_store->set_id)->first();
+        $purchase = Purchase::where('set_id', ($set_store->set_id))->first();
+        if ($purchase == null){
+            return array();
+        }
         $store = Store::where('id', $set_store->store_id)->first();
         $purchase_id = $purchase->id;
         $source = $store->name;
