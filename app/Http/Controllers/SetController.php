@@ -10,7 +10,7 @@ class SetController extends Controller
 {
     public function search_by_postcode(Request $request)
     {
-        $postcode = $request->postcode;
+        $postcode = $request->input('postcode');
         $sets = Set::where('postcode', $postcode)->get();
         $response = array();
         $i = 0;
