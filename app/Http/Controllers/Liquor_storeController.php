@@ -9,38 +9,6 @@ use App\Purchase;
 
 class Liquor_storeController extends Controller
 {
-    #used fields(columns): purchases->liquor1_id~liquor4_id, do not use liquor5_id
-    #                      store->alls
-    #assume user will enter 4 liquor_store_ids no matter what happens
-    #demo: enter 4 liquor_store_ids(e.g, 1,3,5,7)
-    public function search_by_item_ids_2(Request $request){
-        header("Access-Control-Allow-Origin: *");
-        header("Access-Control-Allow-Methods: PUT, GET, POST");
-        header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
-        $liquor_store_ids = explode(',', $request->input('item_id'));
-        //$liquor_store = Liquor_store::find($liquor_store_id);
-        $liquor_store = Liquor_store::find($liquor_store_ids[0]); //ダミ
-        $purchase = Purchase::whereIn('liquor1_id', $liquor_store_ids)
-                            ->whereIn('liquor2_id', $liquor_store_ids)
-                            ->whereIn('liquor3_id', $liquor_store_ids)
-                            ->whereIn('liquor4_id', $liquor_store_ids)->first(); //ダミ
-                            //->whereIn('liquor5_id', $liquor_store_ids)
-        if ($purchase == null){
-            //empty response if item_id not matched
-            return array();
-        }
-        $store = Store::find($liquor_store->store_id);
-        $purchase_id = $purchase->id;
-        $source = $store->name;
-        $source_info = $store->info; //add new col
-        $source_address = $store->address; //add new col
-        $arrival_time = date('m/d/Y H:i:s', ($purchase->created_at->timestamp + $store->delivery_time * 60));
-    
-        $response = array('purchase_id'=>$purchase_id, 'source'=>$source, 'source_info'=>$source_info, 'source_address'=>$source_address, 'arrival_time'=>$arrival_time);
-    
-        return $response;
-    }
-    
     public function search_by_item_ids(Request $request){
         header("Access-Control-Allow-Origin: *");
         header("Access-Control-Allow-Methods: PUT, GET, POST");
